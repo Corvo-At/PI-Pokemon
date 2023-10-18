@@ -14,17 +14,26 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
 
+    
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },
-
+    
     hp: {
       type: DataTypes.INTEGER,
       defaultValue: '50'
     },
-
+    
+    image: {
+      type: DataTypes.STRING,
+      defaultValue: "https://www.bicifan.uy/wp-content/uploads/2016/09/producto-sin-imagen.png",
+      validate: {
+          isUrl: true
+      }
+    },
+    
     attack: {
       type: DataTypes.INTEGER,
       defaultValue: '50'
@@ -53,6 +62,7 @@ module.exports = (sequelize) => {
 
   
   }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true,
   });
 };
